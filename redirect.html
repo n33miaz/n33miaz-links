@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecionando...</title>
+  <script>
+    const redirects = {
+      linkedin: "https://www.linkedin.com/in/neemiasmanso/",
+      instagram: "https://www.instagram.com/lele_mias/",
+      wakatime: "https://wakatime.com/@n33miaz"
+    };
+
+    window.onload = () => {
+      const path = window.location.hash.replace("#", "").toLowerCase();
+      const url = redirects[path];
+
+      if (url) {
+        window.open(url, "_blank");
+        document.body.innerHTML = `<p style="color:white;">Abrindo ${path}...</p>`;
+      } else {
+        document.body.innerHTML = `<p style="color:red;">Link não encontrado.</p>`;
+      }
+    };
+  </script>
+  <style>
+    body { 
+      background: #0d1117; 
+      color: #c9d1d9; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <p>Carregando...</p>
+</body>
+</html>
