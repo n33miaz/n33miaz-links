@@ -10,15 +10,20 @@
       wakatime: "https://wakatime.com/@n33miaz"
     };
 
+    const githubProfileUrl = "https://github.com/n33miaz";
+
     window.onload = () => {
       const path = window.location.hash.replace("#", "").toLowerCase();
       const url = redirects[path];
 
       if (url) {
         window.open(url, "_blank");
-        document.body.innerHTML = `<p style="color:white;">Abrindo ${path}...</p>`;
+        window.location.href = githubProfileUrl;
       } else {
-        document.body.innerHTML = `<p style="color:red;">Link não encontrado.</p>`;
+        document.body.innerHTML = `<p style="color:red;">Link não encontrado. Redirecionando de volta ao perfil...</p>`;
+        setTimeout(() => {
+          window.location.href = githubProfileUrl;
+        }, 3000);
       }
     };
   </script>
