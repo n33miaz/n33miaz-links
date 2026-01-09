@@ -129,22 +129,26 @@
         btnEl.href = target.url;
 
         setTimeout(() => {
-          try {
-            const newWindow = window.open(target.url, "_blank");
+          const newWindow = window.open(target.url, "_blank");
 
-            window.location.href = GITHUB_PROFILE;
-
-            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-              throw new Error("Popup blocked");
-            }
-          } catch (e) {
+          if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
             spinnerEl.style.display = "none";
             titleEl.textContent = "Pop-up Bloqueado";
             msgEl.textContent = `O navegador impediu a abertura automática do ${target.name}. Clique abaixo para acessar.`;
-            btnEl.classList.add("visible");  
+            btnEl.classList.add("visible");
+            
+            btnEl.onclick = function() {
+              setTimeout(() => {
+                window.location.href = GITHUB_PROFILE;
+              }, 500); 
+            };
+
+          } else {
+            window.location.href = GITHUB_PROFILE;
           }
-        }, 2000); 
+        }, 800); 
       } else {
+        // Link não encontrado
         spinnerEl.style.borderTopColor = "#ff6b6b";
         spinnerEl.style.animation = "none";
         titleEl.textContent = "Link não encontrado";
